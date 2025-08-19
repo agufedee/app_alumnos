@@ -5,21 +5,30 @@ use App\Http\Controllers\AuthController;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use Illuminate\Support\Facades\Auth;
+use App\Livewire\Admin\Dashboard;
+use App\Livewire\Alumno\Perfil;
+use App\Http\Middleware\IsAdmin;
 
 Route::get('/', function () {
-    return view('welcome');
+    $user = Auth::user();
+
+    return $user->is_admin
+        ? redirect('dashboard')
+        : redirect('/perfil');
 });
 
 
 Route::get('/iniciar', Login::class)->name('iniciar');
-Route::post('/login', [AuthController::class, 'login']);
-// Route::get('/register', [AuthController::class, 'showRegister']);
 Route::get('/registro', Register::class);
-//Route::post('/register', [AuthController::class, 'register']);
-Route::get('/admin', AdminDashboard::class)->middleware(['auth', 'is_admin']);
+
+
+Route::get('/dashboard', Dashboard::class)->middleware(['auth', IsAdmin::class]);
+
+
+//Route::get('/perfil', Perfil::class)->middleware('auth');
 
 
 Route::post('/logout', function () {
     Auth::logout();
-    return redirect('/login');
-})->middleware('auth');
+    return redirect('/iniciar');
+})->middleware('auth')->name('logout');
