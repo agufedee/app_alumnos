@@ -31,4 +31,4 @@ Route::get('/dashboard', Dashboard::class)->middleware(['auth', IsAdmin::class])
 Route::post('/logout', function () {
     Auth::logout();
     return redirect('/iniciar');
-})->middleware('auth');
+})->middleware('auth')->name('logout');
