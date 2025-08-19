@@ -1,5 +1,5 @@
 <div class="max-w-md mx-auto mt-10">
-    <form wire:submit.prevent="login" class="bg-white p-6 rounded shadow">
+    <form wire:submit.prevent="iniciar" class="bg-white p-6 rounded shadow">
         <h2 class="text-xl font-bold mb-4">Iniciar sesión</h2>
 
         <div class="mb-4">
