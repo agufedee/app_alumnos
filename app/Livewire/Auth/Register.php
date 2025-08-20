@@ -21,6 +21,7 @@ class Register extends Component
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
+            'phone' => 'nullable|string|max:20',
             'photo' => 'required|image|max:2048',
         ]);
 
@@ -34,6 +35,11 @@ class Register extends Component
             'professional_url' => $this->professional_url,
             'photo_path' => $photoPath,
         ]);
+        if ($this->professional_url) {
+            $user->professionalUrls()->create([
+                'url' => $this->professional_url,
+            ]);
+        }
 
         Auth::login($user);
 
