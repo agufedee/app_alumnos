@@ -13,19 +13,31 @@
                     <h3 class="text-lg font-semibold text-gray-800">{{ $user->name }}</h3>
                     <p class="text-sm text-gray-500 mb-1">{{ $user->email }}</p>
 
-                    <div class="flex flex-wrap gap-2">
+                    <div class="flex flex-wrap items-center gap-2">
                         @if ($user->phone)
                             <a href="https://wa.me/{{ env('WHATSAPP_PREFIX') }}{{ $user->phone }}" target="_blank"
-                                class="text-green-600 text-sm hover:underline">
-                                WhatsApp
+                                aria-label="Enviar mensaje por WhatsApp" class="text-green-600 text-xl hover:text-green-700">
+                                <i class="fab fa-whatsapp"></i>
                             </a>
                         @endif
-                        @if ($user->professional_url)
-                            <a href="{{ $user->professional_url }}" target="_blank"
-                                class="text-blue-600 text-sm hover:underline">
-                                Perfil Profesional
-                            </a>
-                        @endif
+                        @foreach ($user->professionalUrls as $link)
+                            @php
+                                $host = parse_url($link->url, PHP_URL_HOST);
+                            @endphp
+
+                            @if (Str::contains($host, 'linkedin'))
+                                <a href="{{ $link->url }}" target="_blank"
+                                    class="text-blue-700 text-xl hover:text-blue-800">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            @elseif (Str::contains($host, 'github'))
+                                <a href="{{ $link->url }}" target="_blank"
+                                    class="text-gray-800 text-xl hover:text-black">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            @endif
+                        @endforeach
+
                     </div>
                 </div>
             </div>
