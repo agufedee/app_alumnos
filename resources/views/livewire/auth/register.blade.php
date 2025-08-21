@@ -11,7 +11,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- Nombre -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Apellido y Nombre</label>
                         <input 
                             type="text" 
                             wire:model="name" 
@@ -62,7 +62,7 @@
                         <input 
                             type="text" 
                             wire:model="phone" 
-                            placeholder="+54 11 1234-5678"
+                            placeholder="370 4234-5678"
                             class="w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-600 py-3 px-3 focus:ring focus:ring-blue-200"
                         >
                     </div>
@@ -73,7 +73,7 @@
                         <input 
                             type="text" 
                             wire:model="professional_url" 
-                            placeholder="linkedin.com/tuperfil"
+                            placeholder="https://example.com/in/tuperfil"
                             class="w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-600 py-3 px-3 focus:ring focus:ring-blue-200"
                         >
                     </div>

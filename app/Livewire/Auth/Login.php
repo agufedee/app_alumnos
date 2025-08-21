@@ -22,7 +22,13 @@ class Login extends Component
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
             session()->regenerate();
-            return redirect()->intended('/dashboard'); // o la ruta que prefieras
+            $user = Auth::user();
+
+    if ($user->is_admin) {
+        return redirect()->intended('/dashboard');
+    } else {
+        return redirect()->intended('/perfil');
+    }
         }
 
         $this->addError('email', 'Las credenciales no son válidas.');

@@ -6,14 +6,19 @@ use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use Illuminate\Support\Facades\Auth;
 use App\Livewire\Admin\Dashboard;
-use App\Livewire\Alumno\Perfil;
 use App\Http\Middleware\IsAdmin;
+use App\Livewire\Alumno\PerfilAlumno;
+
 
 Route::get('/', function () {
     $user = Auth::user();
 
+    if (!$user) {
+        return redirect('/iniciar'); // o la ruta que uses para login
+    }
+
     return $user->is_admin
-        ? redirect('dashboard')
+        ? redirect('/dashboard')
         : redirect('/perfil');
 });
 
@@ -25,7 +30,8 @@ Route::get('/registro', Register::class);
 Route::get('/dashboard', Dashboard::class)->middleware(['auth', IsAdmin::class]);
 
 
-//Route::get('/perfil', Perfil::class)->middleware('auth');
+Route::get('/perfil', PerfilAlumno::class)->middleware('auth');
+
 
 
 Route::post('/logout', function () {
