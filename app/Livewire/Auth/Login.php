@@ -13,6 +13,13 @@ class Login extends Component
     public $password = '';
     public $remember = false;
 
+    public function mount()
+{
+    if (Auth::check()) {
+        return redirect()->route(Auth::user()->is_admin ? 'dashboard' : 'perfil');
+    }
+}
+
     public function iniciar()
     {
         $this->validate([
@@ -25,9 +32,9 @@ class Login extends Component
             $user = Auth::user();
 
     if ($user->is_admin) {
-        return redirect()->intended('/dashboard');
+        return redirect()->to('/dashboard');
     } else {
-        return redirect()->intended('/perfil');
+        return redirect()->to('/perfil');
     }
         }
 
