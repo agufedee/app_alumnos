@@ -1,8 +1,8 @@
-<div class="space-y-4">
+<div>
     {{-- Listado de enlaces --}}
-    <ul class="space-y-2">
+    <ul class="mb-1">
         @foreach ($urls as $url)
-            <li class="flex justify-between items-center bg-gray-100 px-3 py-2 rounded">
+            <li class="mb-2 flex justify-between items-center bg-gray-100 px-3 py-2 rounded">
                 <a href="{{ $url->url }}" target="_blank" class="text-blue-600 underline">
                     {{ $url->url }}
                 </a>
@@ -13,11 +13,12 @@
         @endforeach
     </ul>
     {{-- Formulario para agregar enlace --}}
-    <strong>Agregar Enlace Profesional</strong>
+    <p class="mb-1"><strong>Agregar Enlace Profesional</strong></p>
     <form wire:submit.prevent="addUrl" class="flex gap-2">
-        <input type="url" wire:model="url" placeholder="https://..." class="border rounded px-3 py-2 w-full" />
-        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Agregar</button>
+        <input type="url" wire:model="url" placeholder="https://..."
+            class="w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-600 py-3 px-3 focus:ring focus:ring-blue-200" />
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-xl">Agregar</button>
     </form>
 
-    
+
 </div>
