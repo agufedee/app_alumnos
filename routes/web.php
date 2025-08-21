@@ -40,6 +40,6 @@ Route::post('/logout', function () {
     return redirect('/iniciar');
 })->middleware('auth')->name('logout');
 
-Route::get('/dashboard/user-profile/{user}', function (User $user) {
-    return view('livewire.admin.user-profile-wrapper', compact('user'));
-})->name('admin.user-profile');
+Route::get('/dashboard/user-profile/{user}', UserProfile::class)
+    ->middleware(['auth', IsAdmin::class])
+    ->name('admin.user-profile');
