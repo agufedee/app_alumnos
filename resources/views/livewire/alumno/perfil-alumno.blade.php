@@ -7,16 +7,20 @@
 
     <p><strong>Nombre:</strong> {{ auth()->user()->name }}</p>
     <p><strong>Email:</strong> {{ auth()->user()->email }}</p>
-    <p><strong>Teléfono:</strong> 
-        <a href="https://wa.me/{{ env('WHATSAPP_PREFIX') }}{{ auth()->user()->phone }}" target="_blank" class="text-green-600 hover:underline">
+    <p><strong>Teléfono:</strong>
+        <a href="https://wa.me/{{ env('WHATSAPP_PREFIX') }}{{ auth()->user()->phone }}" target="_blank"
+            class="text-green-600 hover:underline">
             {{ auth()->user()->phone }}
         </a>
     </p>
-    <p><strong>Enlace Profesional:</strong> 
+    <p><strong>Enlace Profesional:</strong></p>
 
-    @if (session()->has('success'))
-        <div class="mt-4 text-green-600 font-medium">
-            {{ session('success') }}
-        </div>
-    @endif
+        @livewire('professional-urls')
+
+
+        @if (session()->has('success'))
+            <div class="mt-4 text-green-600 font-medium">
+                {{ session('success') }}
+            </div>
+        @endif
 </div>

@@ -14,9 +14,13 @@ return new class extends Migration
         Schema::create('professional_urls', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('label')->nullable(); // Ej: "GitHub", "LinkedIn"
             $table->string('url');
+            $table->string('icon')->nullable(); // Para mostrar íconos en el dashboard
+            $table->integer('order')->default(0); // Para ordenar visualmente
             $table->timestamps();
         });
+        
     }
 
     /**

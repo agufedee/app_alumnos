@@ -23,8 +23,8 @@ Route::get('/', function () {
 });
 
 
-Route::get('/iniciar', Login::class)->name('iniciar');
-Route::get('/registro', Register::class);
+Route::get('/iniciar', Login::class)->middleware('guest')->name('iniciar');
+Route::get('/registro', Register::class)->middleware('guest');
 
 
 Route::get('/dashboard', Dashboard::class)->middleware(['auth', IsAdmin::class]);
