@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Livewire\Admin\Dashboard;
 use App\Http\Middleware\IsAdmin;
 use App\Livewire\Alumno\PerfilAlumno;
-
+use App\Livewire\Admin\UserProfile;
+use App\Models\User;
 
 Route::get('/', function () {
     $user = Auth::user();
@@ -38,3 +39,7 @@ Route::post('/logout', function () {
     Auth::logout();
     return redirect('/iniciar');
 })->middleware('auth')->name('logout');
+
+Route::get('/dashboard/user-profile/{user}', UserProfile::class)
+    ->middleware(['auth', IsAdmin::class])
+    ->name('admin.user-profile');
