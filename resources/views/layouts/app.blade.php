@@ -9,6 +9,9 @@
     @vite('resources/css/app.css')
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    @vite('resources/js/app.js')
+
+    @livewireStyles
 </head>
 
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
@@ -19,7 +22,7 @@
             <!-- Logo -->
             <div class="flex items-center space-x-3">
                 <i class="fas fa-graduation-cap text-blue-600 text-2xl"></i>
-                <span class="font-bold text-gray-800 text-xl">App-Alumnos</span>
+                <span class="font-bold text-gray-800 text-xl">App-Lumnos</span>
             </div>
 
             <!-- Usuario / Logout -->
@@ -60,6 +63,7 @@
             <p class="text-gray-500 text-sm">© {{ date('Y') }} App de Alumnos - Todos los derechos reservados</p>
         </div>
     </footer>
+    @livewireScripts
 
 </body>
 
